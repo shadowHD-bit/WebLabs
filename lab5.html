@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Лабораторная работа №5</title>
+</head>
+<body>
+    Лабораторная работа №5
+</body>
+
+<script>
+
+//Создайте функцию, которая принимает два вектора как массивы и проверяет, ортогональны ли эти два вектора или нет. Возвращаемое значение - логическое.
+
+    vector1 = [-1,3,0]
+    vector2 = [-1,3,0]
+    let resultBool
+
+    function checkingForOrthogonality(arrVector1, arrVector2){
+
+    let resultVector = []
+    let result = 0
+    
+
+        if(Array.isArray(arrVector1) != true || Array.isArray(arrVector2) != true){ //Проверка на аргумент
+            console.log('Не верный формат аргумента. Повторите попытку');
+            return false;
+        }
+
+        for(let i = 0; i < arrVector1.length; i++){ //Проверка на формат значения первого вектора
+        if(typeof arrVector1[i] != 'number'){
+            console.log('Не верный формат значений вектора. Вектор должен быть указан в числовом формате');
+            return false;
+        }
+    }
+
+    for(let i = 0; i < arrVector2.length; i++){ //Проверка на формат значения второго вектора
+        if(typeof arrVector2[i] != 'number'){
+            console.log('Не верный формат значений вектора. Вектор должен быть указан в числовом формате');
+            return false;
+        }
+    }
+
+    if(vector1.length == 0 || vector2.length == 0){ //Проверка на нулевой вектор
+            resultBool = true;
+        }
+
+    if(vector1.length >3 || vector2.length>3){ //Проверка на количество координат вектора
+        console.log('Указана векторы, которые содержать более 3х параметров... Укажите векторы 3-х мерного пространства')
+        return false;
+    }
+
+    if(vector1.length != vector2.length){ // Добавление нулевой координаты, при разной длине входных векторов
+        if(vector1.length == 0){
+            for(let i = 0; i<(vector2.length - vector1.length); i++)
+            vector1.push(0);
+        }
+        if(vector2.length == 0){
+            for(let i = 0; i<(vector1.length - vector2.length); i++)
+            vector2.push(0);
+        }
+        if(vector1.length > vector2.length){
+            for(let i = 0; i<=(vector1.length - vector2.length); i++)
+            vector2.push(0);
+        }
+        if(vector1.length < vector2.length){
+            for(let i = 0; i<=(vector2.length - vector1.length); i++)
+            vector1.push(0);
+        }
+    }
+    
+    for (var i=0; i<vector1.length;i++) {         //Проверка на ортогональность
+        resultVector.push(vector1[i]*vector2[i]);
+    }
+    for (var i=0; i<resultVector.length; i++) {
+        result = result + resultVector[i]
+    }
+    if(result == 0){
+        resultBool = true;
+        
+    }
+    else
+        resultBool = false;
+
+    console.log(resultBool)
+    }
+
+    checkingForOrthogonality(vector1, vector2)
+
+
+</script>
+</html>

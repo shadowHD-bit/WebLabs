@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab1</title>
+</head>
+
+<body>
+    <p1>Лабораторная работа №1</p1>
+</body>
+
+
+<script>
+  
+  //11.	Напишите функцию, которая возвращает самую длинную последовательность нулей в двоичной строке
+  let accessOne = true; //Переменная проверки ввода
+
+
+  function longestZero(biNumber) {
+  var mainCount = 0; //Переменная максимального значения
+  var oneCount; //Переменная-счетчик нулей
+  var i = 0; //Переменная-счетчик символа в строке
+  
+  if (typeof biNumber == 'string'){ // Проверка на тип заданного числа(в задании указана строка, проверка что входное число в формате строки)
+
+  while(i < biNumber.length) { //Цикл перебора каждого символа
+    oneCount = 0; 
+    if (biNumber[oneCount + i] == 0 || biNumber[oneCount + i] == 1){
+    while (biNumber[oneCount + i] == 0) //Цикл, в котором идет подсчет нулей
+    oneCount++;
+        if (oneCount > mainCount) //Условие-проверка наибольшего значения
+        mainCount = oneCount;
+    i = i + 1; 
+  }
+  else{
+    console.log('Неверно указанно двоичное число');
+    accessOne = false;
+    break;
+  }
+}
+  
+  return mainCount;
+
+}
+
+else{
+  console.log('Не верный тип заданого числа');
+  accessOne = false;
+  
+}
+}
+
+var res = longestZero('111000000000001011100000000001101'); //Переменная ввода строки, с использование функции
+
+if (accessOne == true){ //Проверка на ввод данных
+ 
+  let strRes = ""; //Переменная последовательности
+
+  for(var j = 0; j < res; j++){ //Цикл последовательности нулей
+  strRes = strRes + "0";
+  }
+
+  console.log(res); //Вывод количества нулей в консоль
+  console.log(strRes); //Вывод последовательности нулей
+}
+else{
+  console.log('Повторите попытку, укажите верное двоичное число');
+}
+
+
+</script>
+
+</html>

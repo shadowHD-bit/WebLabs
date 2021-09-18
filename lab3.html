@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Лабораторная работа №3</title>
+</head>
+<body>
+    <p1>Лабораторная работа №3</p1>
+</body>
+
+<script>
+    //Создайте функцию, которая добавляет пробелы перед каждой заглавной буквой в слове. После этого уберите заглавные буквы из всей строки.
+
+var StrInput = 'HelloMyNameIsAlex';
+
+
+function StrAdd(sttr) {
+  var arr = sttr.split(''); //Массив букв, состовляющих строку
+  var strCount = 0;  //Переменная подсчета номера символа в троке
+  for (let i = 0; i < sttr.length; i++){ //Перебор каждого символа массива
+   
+    if (sttr[i].toUpperCase()==sttr[i]) { //Проверка регистра буквы. если верхний регистр => true
+        arr.splice((i + strCount),0,' ') //Добавление пробела перед буквы с верхним регистром, аргумент 0 указывает на не удаление символа
+        strCount++; //Увеличение счетчика
+    }
+}
+  return arr.join('').toString().toLowerCase(); //Соединение элементов массива и замена всех букв строки на нижний регистр
+}
+
+if (typeof StrInput == 'string')//Проверка аргумента функции
+console.log(StrAdd(StrInput));
+else
+console.log('Не верно указано значение строки, попробуйти повторить!')
+</script>
+</html>

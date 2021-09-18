@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Лабораторная работа №2</title>
+</head>
+<body>
+    <p1>Лабораторная работа №2</p1>
+</body>
+
+<script>
+//5.Создайте функцию, которая принимает массив чисел и возвращает второе по 
+//величине число
+
+arr = [1,2,5,4,7,8,5,6,3,2,1,4,5,6,5,4,8,5,4]; //Входной массив чисел
+let access = true; //Переменная проверки на тип данных
+let secondNumber; //Итоговое число
+
+function ArrBigSecondNumber(arr){ //Функция поиска второго наибольшего числа
+ 
+    let max = 0; //Переменная наибольшего числа в массиве
+    let secondMax = 0;  //Переменная второго наибольшего числа в массиве
+    for (let i = 0; i < arr.length; i++) { //Цикл перебора каждого числа массива
+        if (typeof arr[i] == 'number'){ //Проверка на тип данных в массиве
+            if (arr[i] > max) {  //Поиск второго наибольшего числа
+            secondMax = max;
+            max = arr[i];
+        } else if (arr[i] < max) {
+            if (arr[i] > secondMax)
+            secondMax = arr[i];
+        }
+    }
+        else //Условие при неверном типе данных
+        access = false;    
+    } 
+    secondNumber = secondMax;
+}
+
+if(Array.isArray(arr) == true){ //Проверка на аргумент, входное зачение
+ArrBigSecondNumber(arr); //Вывод
+if (access == true){
+console.log('Второе по величине число в массиве - ' + secondNumber); 
+}
+else
+console.log('Неверно указан тип данных в массиве! Укажите числа в массиве');
+}
+else
+console.log('Не правильно указано входное значение...Введите массив')
+</script>
+
+</html>

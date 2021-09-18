@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Лабораторная работа №8</title>
+</head>
+<body>
+    Лабораторная работа №8
+</body>
+<script>
+    //Подсчитайте количество единиц в двоичном представлении целого числа. 
+    //Например, поскольку 12 - это 1100 в двоичном формате, возвращаемое 
+    //значение должно быть равно 2.
+
+    let startNumber = 12;
+
+    function numberOfOneBiNumber(number){
+
+    let OneBiNumber = 0;
+
+    if(typeof number != 'number' || Number.isInteger(number) == false){
+        console.log('Не верный формат числа. Повторите попытку')
+        return false
+    }
+    
+    while(number/2 != 0){
+        OneBiNumber += Math.abs(Math.trunc(number%2));
+        number = Math.trunc(number/2)
+    }
+
+    console.log('Количество единиц в двоичном представлении числа ' +startNumber+ ': ' + OneBiNumber)
+
+    }
+
+    numberOfOneBiNumber(startNumber);
+
+</script>
+</html>

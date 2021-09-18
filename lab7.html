@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Лабораторная работа №7</title>
+</head>
+<body>
+    Лабораторная работа №7
+</body>
+
+<script>
+    //Для объекта, содержащего имена и возрасты группы людей, 
+    //верните имя самого старого человека.
+
+    const users = { //Входной объект
+        name: ['Alex','Clay','Robert','Anna','Frank','Rudy','Marry','Adam','Steve','Garry'],
+        age: [58,96,12,54,78,91,78,54,47,14]
+    }
+
+    function maxAge(objNameAge){
+
+    let tmp = 0;
+    let tmpIndex = 0; 
+    if(typeof objNameAge != 'object'){ // Проверка на аргумент
+        console.log('Не верный формат аргумента. Повторите попытку')
+        return false;
+    }
+    if(objNameAge.name.length != objNameAge.age.length){ //Проверка на указанные данные
+        console.log('Вы не указали имя/возраст для одного из людей. Повторите попытку')
+        return false;
+    }
+    for(let i = 0; i < objNameAge.age.length; i++){ //Проверка на формат значений
+        if(objNameAge.age[i] <= 0 || typeof objNameAge.age[i] != 'number' || Number.isInteger(objNameAge.age[i]) == false){
+            console.log('Не верный формат возраста человека. Повторите попытку')
+            return false
+        }
+    }
+    for(let i = 0; i < objNameAge.name.length; i++){ //Проверка на формат имени
+        if( typeof objNameAge.name[i] != 'string'){
+            console.log('Не верный формат имени человека. Повторите попытку')
+            return false
+        }
+    }
+    for(let i = 0; i < objNameAge.age.length; i++){ //Поиск самого старого человека
+        if(objNameAge.age[i]>tmp){
+            tmp = objNameAge.age[i];
+            tmpIndex = i;
+        }
+    }
+    console.log('Самый старый человек: ') //Вывод результата
+    for(let i = 0; i < objNameAge.age.length; i++){
+        if(objNameAge.age[i] == tmp){
+            console.log(objNameAge.name[i])
+        }
+    }
+    console.log('Его(их) возраст: ' + objNameAge.age[tmpIndex])
+}
+
+maxAge(users)
+
+</script>
+
+</html>

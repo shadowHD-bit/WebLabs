@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Лабораторная работа №6</title>
+</head>
+<body>
+    Лабораторная работа №6
+</body>
+
+<script>
+
+//Напишите функцию, которая возвращает наибольший общий делитель 
+//всех элементов массива. Если наибольший общий делитель равен 1, 
+//верните 1
+
+let arrData = [0,66,12,12,0,22,-58]
+
+function greatestCommonDivisor(arr) {
+
+if(Array.isArray(arr) != true){ //Проверка на аргумент
+  console.log('Не верный формат аргумента');
+  return false;
+}
+
+for(let i = 0; i < arr.length; i++){ //Проверка на формат значения первого вектора
+  if(typeof arr[i] != 'number' || Number.isInteger(arr[i]) == false){
+      console.log('Не верный формат значений массива. Элементы массива должны быть указаны в числовом формате');
+      return false;
+    }
+  }
+
+  for (i = 1; i < arr.length; i++) { //Алгоритм поиска наибольшего НОДа (Переделанный алгоритм Евклида). Вычисляется НОД первых двух элементов массива и сравнивается со следующими элементами
+    while (arr[0] != 0 && arr[i] != 0) { //Проверка на использованный каждый элемент массива
+      if(Math.abs(arr[0]) > Math.abs(arr[i])) 
+      arr[0] = Math.abs(arr[0]) % Math.abs(arr[i])
+      else
+      arr[i] = Math.abs(arr[i]) % Math.abs(arr[0]);
+    }
+    arr[0] = Math.abs(arr[0]) + Math.abs(arr[i]);
+  }
+  console.log('Наибольший общий делитель элементов = ' + arr[0]);
+}
+
+greatestCommonDivisor(arrData);
+
+</script>
+</html>
