@@ -10,31 +10,83 @@
     Лабораторная работа №8
 </body>
 <script>
+
     //Подсчитайте количество единиц в двоичном представлении целого числа. 
     //Например, поскольку 12 - это 1100 в двоичном формате, возвращаемое 
     //значение должно быть равно 2.
 
-    let startNumber = 12;
+    let startNumber = 12; //Входное значение
 
-    function numberOfOneBiNumber(number){
+function numberOfOneBiNumber(number){
 
-    let OneBiNumber = 0;
+    let OneBiNumber = 0; //Счетчик едениц
+    let biNumber; // Переменная двоичного кода
 
-    if(typeof number != 'number' || Number.isInteger(number) == false){
+    if(typeof number != 'number' || Number.isInteger(number) == false){ //Проверка на представление целого числа
         console.log('Не верный формат числа. Повторите попытку')
         return false
     }
     
-    while(number/2 != 0){
-        OneBiNumber += Math.abs(Math.trunc(number%2));
-        number = Math.trunc(number/2)
-    }
+    if(number >=0){ //Если число положительное
 
+    biNumber = number.toString(2); // Получение двоичного числа
+
+        for(let i =0; i < biNumber.length; i++){ //Подсчет единиц
+            if(biNumber[i] == '1')
+            OneBiNumber += 1;
+        }
+
+    console.log('Число положительное')
     console.log('Количество единиц в двоичном представлении числа ' +startNumber+ ': ' + OneBiNumber)
-
     }
 
-    numberOfOneBiNumber(startNumber);
+//-----------------------------------------------------------------------------------------------------------------------------------------
+
+    else{ //Если число отрицательное
+
+    console.log('Число отрицательное')
+
+    let OneBiNumber = 1;     //Добавляется единица, так как в отрицательном числе старший разряд 1, а js это не учитывает 
+    biNumber = Math.abs(number).toString(2);   //Получение двоичного кода положительного числа
+
+        for(let i =0; i<biNumber.length; i++){
+            if(biNumber[i] == '1')
+            OneBiNumber += 1;
+        }
+        
+    console.log('Число единиц в прямом коде числа '+ startNumber +': '+OneBiNumber)
+
+//----------------------------------------------------------------------------------------------------------------------------------------
+    
+    OneBiNumber = 0; //Обнуление счетчика
+    let obrbiNumber = parseInt(biNumber,2) //Переменная обратного двоичного числа
+    obrbiNumber = ~obrbiNumber  //Преобразование числа для замены каждого бита на противоположный
+    biNumber = Math.abs(obrbiNumber >>> 0).toString(2) //Сдвиг битов до старшего разряда (32 разряда)
+
+        for(let j = 0; j < biNumber.length; j++){
+            if(biNumber[j] == '1'){
+            OneBiNumber = OneBiNumber + 1;
+            }
+        }
+
+    console.log('Число единиц в обратном коде числа(32 двоичных разряда) '+ startNumber +': '+OneBiNumber)
+
+//----------------------------------------------------------------------------------------------------------------------------------------
+
+    OneBiNumber = 0;
+    biNumber = Math.abs(obrbiNumber+1 >>> 0).toString(2) //Прибавление к обратному коду единицы для получения дополнительного кода
+
+        for(let j = 0; j < biNumber.length; j++){
+            if(biNumber[j] == '1'){
+            OneBiNumber = OneBiNumber + 1;
+            }
+        }
+    console.log('Число единиц в дополнительном коде числа(32 двоичных разряда) '+ startNumber +': '+OneBiNumber)
+
+    }
+}
+
+numberOfOneBiNumber(startNumber);
 
 </script>
 </html>
