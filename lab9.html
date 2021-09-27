@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Лабораторная работа №9</title>
+</head>
+<body>
+    Лабораторная работа №9
+</body>
+
+<script>
+
+//Проверьте, состоит ли данная строка только из букв и пробелов, и все 
+//ли буквы в нижнем регистре.
+
+let startStr = "Привет мир!"
+
+function RegisterAndWord(str){
+
+    if(typeof str != "string"){
+        console.log("Не верный формат аргумента. Введите строку...") //Проверка на формат
+        return false;
+    }
+
+    if(/^\s*$/.test(str) != false || str.length == 0){
+        console.log('Указанна пустая строка... Повторите попытку'); //Проверка на пустую строку(строку из пробелов)
+        return false;
+    }
+
+    let temp1 = false;
+
+    for(let i = 0 ; i<str.length; i++){
+        if(/[a-zA-Zа-яёА-ЯЁ]/.test(str[i]) == true){   //Проверка строка толька из букв (без пробелов)
+            temp1 = true
+        }
+    }
+
+    if(temp1 != true){
+        console.log('Строка не содержит букв...')   //Проверка на содержание букв в строке
+        return false
+    }
+
+    if(/^[a-zA-Zа-яёА-ЯЁ]+$/.test(str) == true){
+        console.log('Строка содержит только буквы');
+    }
+    else{
+    let temp2 = true; 
+    for(let i = 0; i<str.length;i++){
+        if(/[a-zA-Zа-яёА-ЯЁ]/.test(str[i]) != true & /\s/.test(str[i]) != true){  //Проверка на содержание других символов
+            temp2 = false;
+        }
+    }
+
+    if(temp2 == true)
+    console.log('Строка содержит только буквы и пробелы');
+    else
+    console.log('Строка содержит НЕ только буквы и пробелы');
+    }
+
+    for(let j = 0; j<str.length;j++){
+        if(/[A-ZА-ЯЁ]/.test(str[j]) != false & /\s/.test(str[j]) != true){  //Проверка на регистр
+            console.log('В данной строке НЕ все буквы в нижнем регистре');
+            return false;
+        }
+    }
+    console.log('В данной строке все буквы в нижнем регистре');   
+}
+
+RegisterAndWord(startStr);
+
+</script>
+
+</html>
