@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Лабораторная работа №10</title>
+</head>
+<body>
+    Лабораторная работа №10
+</body>
+
+<script>
+    //Учитывая известное количество уникальных предметов, сколькими способами 
+    //мы можем расположить их в ряд? Создайте функцию, которая принимает целое 
+    //число n и возвращает количество цифр числа возможных перестановок для n уникальных 
+    //элементов. Например, 5 уникальных предметов можно расположить 120 уникальными 
+    //способами. 120 состоит из 3 цифр, поэтому возвращается целое число 3.
+
+startnumber = 6;
+
+
+function access(n){
+    if(typeof n != 'number'){
+        throw new Error("Не правильно указан тип данных. Укажите число...");
+    }
+
+    else if(Number.isInteger(n) != true){
+        throw new Error("Не верно указано значение аргумента. Укажите целое число... ");
+    }
+
+    else if (n < 0) {  
+        throw new Error("Количество предметов не может быть отрицательным. Введите целое число")
+    }
+    else if (n == 0) {
+        result0 = 1;
+        console.log("Количество цифр в числе возможных вариантов = "+result0+" (Если 0 предметов, то и 0 способов раставить их... Следовательно 1 число)")
+        return false;
+    }
+
+    function variantInRow(n){
+    if(n === 0)
+        return 1;
+    else
+        return n*variantInRow(n-1);  
+    }
+
+    let result = 1;
+    let num = variantInRow(startnumber)
+        for(let i = 0; num > 1; i++) {
+            num /= 10;
+        result = i+1;
+        }
+
+    console.log("Число возможных вариантов растановки = " +variantInRow(startnumber))
+    console.log("Количество цифр в данном числе = "+ result)
+}
+
+
+
+access(startnumber)
+
+
+</script>
+</html>

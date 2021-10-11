@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Лабораторная работа №11</title>
+</head>
+<body>
+    Лабораторная работа №11
+</body>
+
+<script>
+
+    //Создайте функцию для расчета счета за электроэнергию. Учитывая 
+    //дату начала и окончания выставления счета, начальные и конечные 
+    //показания счетчика, цену за единицу в рублях и постоянную 
+    //плату (ежедневная арендная плата за ваш счетчик) в качестве 
+    //аргументов, рассчитайте свой счет. Счет за электроэнергию 
+    //рассчитывается путем умножения разницы между показаниями 
+    //счетчика на цену за единицу и добавления количества дней, 
+    //умноженного на постоянную плату. Затем вам нужно добавить 5% налога.
+
+    let startDay = 11;
+    let startMonth = 7;
+    let startYear = 2021 ;
+
+    let endDay = 11;
+    let endMonth = 8;
+    let endYear = 2021;
+
+    let startDate = new Date(startYear, startMonth-1, startDay); //Начальная дата
+    let endDate = new Date(endYear, endMonth-1, endDay);  //Конечная дата
+
+    if (startDate.getFullYear() != startYear || startDate.getMonth() != startMonth-1 || startDate.getDate() != startDay) { //Проверка на валидность даты
+        console.log('Указана не корректная начальная дата. Повторите попытку');
+        throw new Error();
+    }
+
+    if (endDate.getFullYear() != endYear || endDate.getMonth() != endMonth-1 || endDate.getDate() != endDay) {
+        console.log('Указана не корректная конечная дата. Повторите попытку');
+        throw new Error();
+    }
+
+    let startEnergyMeter = 111; //Показания счетчика в начале периода
+    let endEnergyMeter = 124; //Показания счетчика в конце периода
+
+    let priceEnergy = 3.85; //Плата за 1 кВт
+    let constPriceOfMeter = 1.4; //Стоимость за день использования счетчика
+
+    let percentTags = 0.05; //Процент налога
+
+    function validAccess(date1, date2, meter1, meter2, price, constPrice, percent){
+
+        if(typeof price != "number" || price<0){
+            console.log("Не правильно указан тип цены тарифа... Повторие попытку");
+            throw new Error();
+        }
+
+        if(typeof constPrice != "number" || constPrice<0){
+            console.log("Не правильно указан размер постоянной оплаты... Повторие попытку");
+            throw new Error();
+        }
+
+        if(typeof percent != "number" || percent<0){
+            console.log("Не правильно указан размер процента... Повторие попытку");
+            throw new Error();
+        }
+
+        if(typeof meter1 != "number" || meter1<0){
+            console.log("Не правильно указаны показания счетчика. Укажите числа счетчика не указывая нули и числа в красной ячейки... Повторие попытку");
+            throw new Error();
+        }
+
+        if(typeof meter2 != "number" || meter2<0){
+            console.log("Не правильно указаны показания счетчика. Укажите числа счетчика не указывая нули и числа в красной ячейки... Повторие попытку");
+            throw new Error();
+        }
+
+        function countDigits(num) {
+                for(var i = 0; num > 1; i++) {
+                num /= 10;
+            }
+            return i;
+        }   
+
+        if(((countDigits(meter1) > 5) || (countDigits(meter2) > 5))|| ((countDigits(meter1) == 0) || (countDigits(meter2) == 0))){
+            console.log("Показания счетчика превышает количество ячеек в нем... Смените счетчик или укажите корректные данные (Укажите 5 или менее цифр)");
+            throw new Error();
+        }  
+
+        let diffTime = date2.getTime() - date1.getTime();
+        let diffDay = diffTime / (1000 * 3600 * 24);
+
+        if(diffDay < 0){
+            console.log("Указана некорректная дата... Повторите попытку");
+            throw new Error();
+        }
+        
+        
+
+    }
+
+    validAccess(startDate, endDate,startEnergyMeter, endEnergyMeter, priceEnergy, constPriceOfMeter, percentTags)
+
+
+    function resultPriceofMeter(date1, date2, meter1, meter2, price, constPrice, percent){
+
+        let diffTime = date2.getTime() - date1.getTime();
+        let diffDay = diffTime / (1000 * 3600 * 24);
+
+        let resEnergyMeter = meter2 - meter1;
+
+        console.log("За " + diffDay + " дней(дня) было использовано " + resEnergyMeter + " кВт энергии..." )
+
+        let resPrice = price*resEnergyMeter;
+        resPrice += (diffDay*constPrice)
+        resPrice += resPrice*percent
+
+        console.log("Стоимость по стандартному тарифу = " + price + " рублей за кВт/час")
+        console.log("Стоимость электричества за текущий период составит " + resPrice.toFixed(2) + " рублей") //Результат с округлением до двух знаков после запятой
+
+    }
+
+    resultPriceofMeter(startDate, endDate,startEnergyMeter, endEnergyMeter, priceEnergy, constPriceOfMeter, percentTags);
+
+
+</script>
+</html>
