@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Лабораторная работа №12</title>
+</head>
+<body>
+    Лабораторная работа №12
+</body>
+
+<script>
+    //Получив число, выясните, сколько единиц, троек и девяток вы можете 
+    //уместить в это число. Вы должны создать класс. Для этого вы создадите 
+    //переменные (class.ones, class.threes, class.nines).
+
+    let startNumber = 736 ;
+
+    class valueDigits{
+        
+        constructor(num){
+
+            this.ones = 0;
+            this.threes = 0;
+            this.nines = 0;
+
+            if (num == null) throw new Error("Указаны не все данные... Повторите попытку");
+            if(Number.isInteger(num) != true) throw new Error("Указаны не корректные данные... Введите целое число");
+            if (typeof num != "number" || num <0) throw new Error("Невозможно создать класс... Введите корректные данные!")
+         
+            this.num = num;
+       
+        }
+
+        getValueOnes(){   
+            return parseInt(this.num/1) 
+        }
+
+        getValueThrees(){
+            return parseInt(this.num/3)
+        }
+
+        getValueNines(){
+            return parseInt(this.num/9)
+        }
+        
+        getValueOnesThreesNines(){
+            while(this.num != 0){
+                if(this.num>=9){
+                    this.nines= this.nines+1
+                    this.num = this.num - 9
+                }
+                if(this.num>=3){
+                    this.threes++
+                    this.num = this.num - 3
+                }
+                if(this.num>=1){
+                    this.ones++
+                    this.num = this.num - 1
+                }
+            }
+            console.log("В число может вместиться вместе "+this.ones+" едениц(-у), "+ this.threes+" троек(-йку), "+ this.nines+" девяток(-тку)...")
+        }
+    }
+
+    let value = new valueDigits(startNumber)
+    console.log("Можем поместить в число отдельно "+value.getValueOnes()+" единиц(-а)...");
+    console.log("Можем поместить в число отдельно "+value.getValueThrees()+" троек(-йка)...");
+    console.log("Можем поместить в число отдельно "+value.getValueNines()+" девяток(-тка)...");
+    value.getValueOnesThreesNines();
+
+
+</script>
+</html>
