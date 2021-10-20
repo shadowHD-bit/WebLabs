@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Лабораторная работа №13</title>
+    <link rel="stylesheet" href="./lab13.css">
+</head>
+<body>
+    <p class = "labsnumber">Лабораторная работа №13</p>
+    
+    <div class = "task">
+        <p class = "dopin">Задание:</p>
+        <p class ="tasklab">4. Напишите функцию для добавления строк в HTML-таблицу.</p>
+    </div>
+    <div class = "result">
+        <div class = "button">
+            <button class="addbtn" onclick="addRow('table')">Добавить строку</button>
+            <button class="rembtn" onclick="remRow('table')">Удалить строку</button>
+        </div>
+        <div class="divtabl">
+        <table class="table" id="table" cellspacing="6" border="1">
+            <tbody>
+              <tr>
+                <td>Столбец 1</td><td>Столбец 2 </td>             
+            </tr>
+            </tbody>
+          </table>
+        </div>
+    </div>
+    
+</body>
+
+<script src="./lab13.js"></script>
+
+</html>
