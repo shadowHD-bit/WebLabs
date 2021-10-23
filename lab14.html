@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Лабораторная работа №14</title>
+</head>
+<body>
+    Лабораторная работа №14
+</body>
+
+<script>
+
+//Создайте функцию сортировки, которая сортирует числа не по порядку номеров, 
+//а по длине. Это означает сортировку чисел с наименьшим количеством цифр перед 
+//числами с наибольшим количеством цифр.
+
+let numbers = [1,7,8,5,6,11,747,51,-41,-181.1,77777];
+
+//x.toString().length;
+function sortNumberLength(arr){
+
+    if(arr.length == 0){
+        throw new Error("Данные не указанны... Введите данные и повторите попытку!")
+    }
+
+    for(let i =0; i < arr.length; i++){
+        if(typeof arr[i] != "number" ){
+            throw new Error("Не верный формат данных... Введите числа!")
+        }
+    }
+    if(Array.isArray(arr) != true){ 
+        throw new Error("Произошла ошибка... Указан не массив, повторите попытку!")
+    }
+
+    //Если число не целое, то не целая часть числа учитывается при сортировке
+    //Если указано отрицательное число, то сортиируется по количеству цифр этого числа в не отрицательном виде
+
+    let maxLengthNumber = 0;
+    for(let i =0; i < arr.length; i++){
+        if(Number.isInteger(arr[i]) == false){
+            if((Math.abs(arr[i])).toString().length - 1 > maxLengthNumber){
+            maxLengthNumber = (Math.abs(arr[i])).toString().length - 1;
+            }
+        }
+        else{
+            if((Math.abs(arr[i])).toString().length > maxLengthNumber){
+            maxLengthNumber = (Math.abs(arr[i])).toString().length;
+            }
+        }    
+    }
+
+    let endArr = [];
+    
+    for(let i = 1; i<=maxLengthNumber; i++){
+        for(let j = 0; j < arr.length; j++){
+            if(Number.isInteger(arr[j]) == false){
+                if((Math.abs(arr[j])).toString().length -1 == i){
+                    endArr.push(arr[j])
+                }
+            }
+            else{ 
+                if((Math.abs(arr[j])).toString().length == i){
+                    endArr.push(arr[j])
+                }
+            }
+        
+        }
+    }
+    console.log(endArr)
+}
+
+sortNumberLength(numbers)
+
+</script>
+
+</html>
